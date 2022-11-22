@@ -7,23 +7,19 @@ import root_finding_methods as rm
 x = np.linspace(-5, 5, 1000)
 
 # Initialise variables for scatter markers
-markers = np.zeros(4,)
+markers = np.zeros(
+    5,
+)
 colors = [
     "orange",
     "blue",
     "purple",
     "green",
+    "yellow",
 ]
 
-# Finding roots of g(x)
-g_coef = [
-    1,
-    -3,
-    -10,
-    4,
-    1,
-]
-p = np.roots(g_coef)
+# Finding roots of f(x)
+p = np.roots(rm.p)
 
 # Setting y axis to -100 <= y <= 100 and adjusting figure size
 fig = plt.figure(figsize=[10, 4])
@@ -35,7 +31,7 @@ plt.ylim(
 )
 
 # Line plot
-plt.plot(x, rm.g(x))
+plt.plot(x, rm.f(x))
 
 # Scatter plot
 plt.scatter(
@@ -49,11 +45,13 @@ plt.scatter(
 
 # Axis labelling
 plt.xlabel("$x$")
-plt.ylabel("$g(x)$")
-plt.title("Newton-Raphson convergence for g(x) = $x^4 - 3x^3 - 10x^2 + 4x + 1$")
+plt.ylabel("$f(x)$")
+plt.title(
+    "Newton-Raphson convergence for f(x) = $x^5 - 2x^4 - 10x^3 + 18x^2 + 10x - 9$"
+)
 
 # Visual clarity
-plt.rcParams.update({"font.size": 14})
+plt.rcParams.update({"font.size": 13})
 plt.tight_layout()
 plt.grid()
 

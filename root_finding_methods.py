@@ -1,10 +1,22 @@
 import numpy as np
 
+""" Defined values """
+
 # Coefficients of each element of f(x)
-p = [1,-2,-10,18,10,-9,]
+p = [
+    1,
+    -2,
+    -10,
+    18,
+    10,
+    -9,
+]
 
 # Find roots of f(x)
 r = np.roots(p)
+
+x = np.linspace(-5, 5, 1000)
+eps = 1e-10
 
 
 def f(x):
@@ -13,17 +25,7 @@ def f(x):
 
 def dfdx(x):
     "Derivative of f(x)"
-    return 5 * x**4 - 8 * x**3 - 30 * x**2 + 36 * x
-
-
-def g(x):
-    return x**4 - 3 * x**3 - 10 * x**2 + 4 * x + 1
-
-
-def dgdx(x):
-    "Derivative of g(x)"
-
-    return 4 * x**3 - 9 * x**2 - 20 * x + 4
+    return 5 * x**4 - 8 * x**3 - 30 * x**2 + 36 * x + 10
 
 
 """ Newton-Rapson Method """
@@ -35,7 +37,7 @@ def newraph(f, dfdx, x0, eps):
     n = 0
 
     while abs(f(x)) > eps:
-        x = x - f(x) / dfdx(x)
+        x = x - (f(x) / dfdx(x))
         n += 1
     return x, n
 
@@ -74,6 +76,9 @@ def sec_roots(f, x0, x1, eps):
 
 import root_finding_methods as rm
 
+x_0 = 1
+eps = 1e-10
+
 r, n = rm.newraph(
     lambda x: x**5 - 2 * x**4 - 10 * x**3 + 18 * x**2 + 10 * x - 9,
     lambda x: 5 * x**4 - 8 * x**3 - 30 * x**2 + 36 * x + 10,
@@ -81,7 +86,7 @@ r, n = rm.newraph(
     1e-10,
 )
 
-print("Root found at {} after {} iterations using Newton Raphson. \n".format(r,n))
+# print("Root found at {} after {} iterations using Newton Raphson. \n".format(r,n))
 
 r, n = rm.sec_roots(
     lambda x: x**5 - 2 * x**4 - 10 * x**3 + 18 * x**2 + 10 * x - 9,
@@ -90,4 +95,4 @@ r, n = rm.sec_roots(
     1e-10,
 )
 
-print("Root found at {} after {} iterations using Secant. \n".format(r,n))
+# print("Root found at {} after {} iterations using Secant. \n".format(r,n))
